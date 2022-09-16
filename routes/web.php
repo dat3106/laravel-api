@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Hash;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/login', function () {
+    return view('welcome');
+});
 Route::get('/setup', function () {
     $credentials = [
         'email' => 'admin@admin.com',

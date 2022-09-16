@@ -93,6 +93,9 @@ class CustomerController extends Controller
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         $customer->update($request->all());
+        return response([
+            'message' => 'Update successfully',
+        ], 200);
     }
 
     /**
@@ -105,6 +108,6 @@ class CustomerController extends Controller
     public function destroy(DeleteCustomerRequest $request, Customer $customer)
     {
         $customer->delete();
-        return response()->json("Success!",200);
+        return response()->json("Delete Successfully!",200);
     }
 }

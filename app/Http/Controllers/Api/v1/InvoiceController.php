@@ -34,16 +34,6 @@ class InvoiceController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\v1\StoreInvoiceRequest  $request
@@ -51,7 +41,7 @@ class InvoiceController extends Controller
      */
     public function store(StoreInvoiceRequest $request)
     {
-        //
+        return new InvoiceResource(Invoice::create($request->all()));
     }
 
     public function bulkStore(BulkStoreInvoiceRequest $request) {
@@ -87,7 +77,10 @@ class InvoiceController extends Controller
      */
     public function update(UpdateInvoiceRequest $request, Invoice $invoice)
     {
-
+        $invoice->update($request->all());
+        return response([
+            'message' => 'Update successfully',
+        ], 200);
     }
 
     /**
@@ -99,5 +92,6 @@ class InvoiceController extends Controller
     public function destroy(Invoice $invoice)
     {
         $invoice->delete();
+        return response()->json("Delete Successfully!",200);
     }
 }
